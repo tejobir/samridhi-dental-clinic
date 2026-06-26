@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 80 80" role="img" aria-label="Samridhi Dental lotus mark">
+  <defs>
+    <linearGradient id="petal" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#e07aa0"/>
+      <stop offset="1" stop-color="#c14d77"/>
+    </linearGradient>
+  </defs>
+  <!-- leaves -->
+  <path d="M40 64 C 24 62, 14 54, 13 44 C 27 45, 37 52, 40 64 Z" fill="#8ab36b"/>
+  <path d="M40 64 C 56 62, 66 54, 67 44 C 53 45, 43 52, 40 64 Z" fill="#7aa75c"/>
+  <!-- back petals -->
+  <g fill="url(#petal)" opacity="0.85">
+    <path d="M40 20 C 28 32, 28 50, 40 58 C 52 50, 52 32, 40 20 Z" transform="rotate(-32 40 50)"/>
+    <path d="M40 20 C 28 32, 28 50, 40 58 C 52 50, 52 32, 40 20 Z" transform="rotate(32 40 50)"/>
+  </g>
+  <!-- side petals -->
+  <g fill="url(#petal)">
+    <path d="M40 16 C 29 30, 29 50, 40 60 C 51 50, 51 30, 40 16 Z" transform="rotate(-16 40 50)"/>
+    <path d="M40 16 C 29 30, 29 50, 40 60 C 51 50, 51 30, 40 16 Z" transform="rotate(16 40 50)"/>
+  </g>
+  <!-- tooth, front and centre, cradled by the lotus -->
+  <path d="M40 30 C 33 27, 25 31, 25 42 C 25 53, 28 63, 31.5 63 C 35 63, 35 55, 40 55 C 45 55, 45 63, 48.5 63 C 52 63, 55 53, 55 42 C 55 31, 47 27, 40 30 Z"
+        fill="#fffaf5" stroke="#c14d77" stroke-width="2.2" stroke-linejoin="round"/>
+  <!-- centre petal in front -->
+  <path d="M40 14 C 31 28, 31 48, 40 58 C 49 48, 49 28, 40 14 Z" fill="url(#petal)" opacity="0.92"/>
+  <circle cx="40" cy="34" r="2.4" fill="#fffaf5"/>
+</svg>
