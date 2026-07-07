@@ -44,8 +44,43 @@
           io.unobserve(entry.target);
         }
       });
-    }, { threshold: 0.12, rootMargin: "0px 0px -8% 0px" });
+    }, { threshold: 0.1, rootMargin: "0px 0px -6% 0px" });
     revealEls.forEach(function (el) { io.observe(el); });
+  }
+
+  /* ---- Hero image: subtle parallax drift ---- */
+  var heroImg = document.getElementById("heroImg");
+  if (heroImg && !prefersReduced) {
+    var ticking = false;
+    var drift = function () {
+      var y = Math.min(window.scrollY, 900);
+      heroImg.style.transform = "translateY(" + y * -0.05 + "px)";
+      ticking = false;
+    };
+    window.addEventListener("scroll", function () {
+      if (!ticking) { requestAnimationFrame(drift); ticking = true; }
+    }, { passive: true });
+  }
+
+  /* ---- Treatment menu: sticky preview crossfade ---- */
+  var menuRows = document.querySelectorAll(".menu__row[data-img]");
+  var caption = document.getElementById("menuCaption");
+  var finePointer = window.matchMedia("(pointer: fine)").matches;
+  if (menuRows.length && finePointer) {
+    menuRows.forEach(function (row) {
+      row.addEventListener("mouseenter", function () {
+        var target = document.getElementById(row.getAttribute("data-img"));
+        if (!target || target.classList.contains("is-active")) return;
+        document.querySelectorAll(".menu__frame img.is-active").forEach(function (img) {
+          img.classList.remove("is-active");
+        });
+        target.classList.add("is-active");
+        if (caption) {
+          var name = row.querySelector("h3");
+          caption.textContent = name ? name.textContent : "";
+        }
+      });
+    });
   }
 
   /* ---- Highlight today's opening hours ---- */
@@ -54,7 +89,7 @@
   if (todayLi) todayLi.classList.add("is-today");
 
   /* ---- Smooth-scroll with header offset for in-page links ---- */
-  var headerH = function () { return header ? header.offsetHeight + 12 : 0; };
+  var headerH = function () { return header ? header.offsetHeight + 16 : 0; };
   document.querySelectorAll('a[href^="#"]').forEach(function (link) {
     link.addEventListener("click", function (e) {
       var id = link.getAttribute("href");
@@ -67,58 +102,11 @@
     });
   });
 
-  /* ---- Scroll progress bar ---- */
-  var progress = document.getElementById("scrollProgress");
-  if (progress) {
-    var ticking = false;
-    var updateProgress = function () {
-      var h = document.documentElement;
-      var max = h.scrollHeight - h.clientHeight;
-      var p = max > 0 ? Math.min(window.scrollY / max, 1) : 0;
-      progress.style.transform = "scaleX(" + p + ")";
-      ticking = false;
-    };
-    window.addEventListener("scroll", function () {
-      if (!ticking) { requestAnimationFrame(updateProgress); ticking = true; }
-    }, { passive: true });
-    updateProgress();
-  }
-
-  /* ---- Count-up numbers when scrolled into view ---- */
-  var counters = document.querySelectorAll("[data-count]");
-  var runCount = function (el) {
-    var target = parseFloat(el.getAttribute("data-count"));
-    var dec = parseInt(el.getAttribute("data-decimals") || "0", 10);
-    if (prefersReduced) { el.textContent = target.toFixed(dec); return; }
-    var dur = 1100, start = null;
-    var step = function (ts) {
-      if (start === null) start = ts;
-      var t = Math.min((ts - start) / dur, 1);
-      var eased = 1 - Math.pow(1 - t, 3); // ease-out-cubic
-      el.textContent = (target * eased).toFixed(dec);
-      if (t < 1) requestAnimationFrame(step);
-      else el.textContent = target.toFixed(dec);
-    };
-    requestAnimationFrame(step);
-  };
-  if (counters.length) {
-    if (!("IntersectionObserver" in window)) {
-      counters.forEach(function (el) { runCount(el); });
-    } else {
-      var cio = new IntersectionObserver(function (entries) {
-        entries.forEach(function (e) {
-          if (e.isIntersecting) { runCount(e.target); cio.unobserve(e.target); }
-        });
-      }, { threshold: 0.6 });
-      counters.forEach(function (el) { cio.observe(el); });
-    }
-  }
-
   /* ---- Current year ---- */
   var y = document.getElementById("year");
   if (y) y.textContent = new Date().getFullYear();
 
-  /* ---- Smooth FAQ open/close height ---- */
+  /* ---- Smooth FAQ open ---- */
   document.querySelectorAll(".faq details").forEach(function (d) {
     var ans = d.querySelector(".faq__a");
     if (!ans || prefersReduced) return;
@@ -128,7 +116,7 @@
         var h = ans.offsetHeight;
         ans.style.height = "0px";
         requestAnimationFrame(function () {
-          ans.style.transition = "height .35s cubic-bezier(.22,1,.36,1)";
+          ans.style.transition = "height .4s cubic-bezier(.22,1,.36,1)";
           ans.style.height = h + "px";
         });
         ans.addEventListener("transitionend", function te() {
