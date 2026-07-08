@@ -83,6 +83,21 @@
     });
   }
 
+  /* ---- Clinic tour video: poster overlay -> play ---- */
+  var tourVideo = document.getElementById("tourVideo");
+  var tourOverlay = document.getElementById("tourOverlay");
+  if (tourVideo && tourOverlay) {
+    var playTour = function () {
+      tourOverlay.classList.add("is-hidden");
+      tourVideo.play();
+    };
+    tourOverlay.addEventListener("click", playTour);
+    tourVideo.addEventListener("ended", function () {
+      tourVideo.currentTime = 0;
+      tourOverlay.classList.remove("is-hidden");
+    });
+  }
+
   /* ---- Highlight today's opening hours ---- */
   var today = new Date().getDay(); // 0 = Sunday
   var todayLi = document.querySelector('#hoursList li[data-day="' + today + '"]');

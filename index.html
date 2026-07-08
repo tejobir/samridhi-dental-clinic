@@ -36,6 +36,7 @@
     <nav class="nav" aria-label="Primary">
       <a href="#treatments">Treatments</a>
       <a href="#about">Dr. Chadha</a>
+      <a href="#tour">Tour</a>
       <a href="#approach">Our Care</a>
       <a href="#reviews">Reviews</a>
       <a href="#visit">Visit</a>
@@ -57,6 +58,7 @@
 <div class="drawer" id="drawer">
   <a href="#treatments">Treatments</a>
   <a href="#about">Dr. Puja Chadha</a>
+  <a href="#tour">Watch the Tour</a>
   <a href="#approach">Our Care</a>
   <a href="#reviews">Reviews</a>
   <a href="#visit">Visit Us</a>
@@ -84,6 +86,10 @@
         <span class="sep" aria-hidden="true">|</span>
         <span>Shop 26, Tulsi Gagan, Sector 21</span>
       </p>
+      <a href="#tour" class="hero__tour" data-enter="5">
+        <span class="glyph" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span>
+        Watch the clinic tour · 3 min
+      </a>
     </div>
 
     <div class="hero__media" data-enter>
@@ -129,6 +135,34 @@
         <li><span class="dash" aria-hidden="true">—</span><span><b>Gentle for the nervous.</b> Extra-numbing comfort, slow pacing, and a dentist who never makes you feel rushed.</span></li>
       </ul>
     </div>
+  </div>
+</section>
+
+<!-- ===================== TOUR ===================== -->
+<section class="section tour" id="tour">
+  <div class="wrap">
+    <div class="section-head" data-reveal>
+      <span class="kicker">Step inside</span>
+      <h2 class="h-section">A three-minute walk through Samridhi Dental.</h2>
+      <p class="lede">Meet Dr. Chadha, see the treatment rooms, and get a feel for the calm we work to create, before you ever walk through our door.</p>
+    </div>
+
+    <div class="tour__player" data-reveal>
+      <video id="tourVideo" poster="assets/img/clinic-hero.webp" preload="metadata" playsinline controls>
+        <source src="assets/video/clinic-tour.mp4" type="video/mp4" />
+        Your browser does not support embedded video. <a href="assets/video/clinic-tour.mp4">Download the clinic tour</a> instead.
+      </video>
+      <button class="tour__overlay" id="tourOverlay" style="--poster-img:url('assets/img/clinic-hero.webp')" aria-label="Play the clinic tour video, 3 minutes 5 seconds">
+        <span class="tour__play" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+        </span>
+        <span class="tour__meta">
+          <strong>Inside Samridhi Dental</strong>
+          <span>3:05 &middot; English</span>
+        </span>
+      </button>
+    </div>
+    <p class="tour__caption">Filmed at our Sector 21 clinic. Grab your headphones, or turn the volume up.</p>
   </div>
 </section>
 
