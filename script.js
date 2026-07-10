@@ -83,20 +83,50 @@
     });
   }
 
-  /* ---- Clinic tour video: poster overlay -> play ---- */
-  var tourVideo = document.getElementById("tourVideo");
-  var tourOverlay = document.getElementById("tourOverlay");
-  if (tourVideo && tourOverlay) {
-    var playTour = function () {
-      tourOverlay.classList.add("is-hidden");
-      tourVideo.play();
-    };
-    tourOverlay.addEventListener("click", playTour);
-    tourVideo.addEventListener("ended", function () {
-      tourVideo.currentTime = 0;
-      tourOverlay.classList.remove("is-hidden");
+  /* ---- Video players: poster overlay -> play (clinic tour, wedding reel, etc.) ---- */
+  document.querySelectorAll(".tour__player").forEach(function (player) {
+    var video = player.querySelector("video");
+    var overlay = player.querySelector(".tour__overlay");
+    if (!video || !overlay) return;
+    overlay.addEventListener("click", function () {
+      overlay.classList.add("is-hidden");
+      video.play();
     });
-  }
+    video.addEventListener("ended", function () {
+      video.currentTime = 0;
+      overlay.classList.remove("is-hidden");
+    });
+  });
+
+  /* ---- Appointment form: build a WhatsApp message and hand off ---- */
+  document.querySelectorAll(".appt-form").forEach(function (form) {
+    form.addEventListener("submit", function (e) {
+      e.preventDefault();
+      var data = new FormData(form);
+      var name = (data.get("name") || "").trim();
+      var phone = (data.get("phone") || "").trim();
+      var treatment = (data.get("treatment") || "").trim();
+      var date = (data.get("date") || "").trim();
+      var message = (data.get("message") || "").trim();
+      var context = (data.get("context") || "").trim() || "an appointment";
+
+      var dateParts = date.split("-");
+      if (dateParts.length === 3) date = dateParts[2] + "-" + dateParts[1] + "-" + dateParts[0];
+
+      var lines = [
+        "Hi, I'd like to book " + context + " at Samridhi Dental.",
+        "",
+        "Name: " + name,
+        "Phone: " + phone
+      ];
+      if (treatment) lines.push("Treatment: " + treatment);
+      lines.push("Preferred date: " + (date || "Flexible"));
+      if (message) lines.push("Notes: " + message);
+
+      var text = encodeURIComponent(lines.join("\n"));
+      window.open("https://wa.me/918591141204?text=" + text, "_blank", "noopener");
+    });
+  });
 
   /* ---- Highlight today's opening hours ---- */
   var today = new Date().getDay(); // 0 = Sunday

@@ -451,6 +451,33 @@ em { font-style: italic; }
 .visit__map { border-radius: var(--r-img); overflow: hidden; min-height: 400px; border: 1px solid var(--line); }
 .visit__map iframe { width: 100%; height: 100%; min-height: 400px; border: 0; display: block; filter: saturate(0.7) contrast(0.98); }
 
+/* ---------- Appointment form (submits via WhatsApp) ---------- */
+.appt-card {
+  background: var(--surface); border: 1px solid var(--line); border-radius: var(--r-panel);
+  padding: clamp(1.8rem, 1.4rem + 1.5vw, 2.6rem);
+  margin-bottom: clamp(2.4rem, 1.8rem + 2vw, 3.6rem);
+}
+.appt-card h3 { font-size: clamp(1.3rem, 1.15rem + 0.6vw, 1.6rem); font-weight: 500; margin-bottom: 0.5rem; }
+.appt-card > p { color: var(--ink-soft); font-size: 0.94rem; margin-bottom: 1.7rem; max-width: 60ch; }
+
+.appt-form { display: grid; gap: 1.1rem; }
+.appt-form__row { display: grid; grid-template-columns: 1fr 1fr; gap: 1.1rem; }
+.appt-form .field { display: grid; gap: 0.45rem; }
+.appt-form label { font-size: 0.72rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-faint); }
+.appt-form input, .appt-form select, .appt-form textarea {
+  font: inherit; font-size: 0.96rem; color: var(--ink);
+  background: var(--bg); border: 1px solid var(--line); border-radius: var(--r-panel);
+  padding: 0.8rem 1rem; width: 100%; transition: border-color .25s var(--ease);
+}
+.appt-form input:focus, .appt-form select:focus, .appt-form textarea:focus { outline: none; border-color: var(--ink-soft); }
+.appt-form textarea { resize: vertical; min-height: 5rem; }
+.appt-form__submit { display: flex; align-items: center; gap: 1.1rem; flex-wrap: wrap; margin-top: 0.4rem; }
+.appt-form__note { font-size: 0.82rem; color: var(--ink-faint); }
+
+@media (max-width: 620px) {
+  .appt-form__row { grid-template-columns: 1fr; }
+}
+
 /* ============================================================
    FAQ
    ============================================================ */
@@ -551,7 +578,7 @@ em { font-style: italic; }
 }
 
 @media (max-width: 880px) {
-  .nav, .header__call { display: none; }
+  .nav, .header__call, .header__cta .btn { display: none; }
   .nav-toggle {
     display: inline-grid; place-items: center; width: 44px; height: 44px;
     border: 1px solid var(--line); border-radius: 50%; background: var(--surface);
@@ -599,6 +626,50 @@ em { font-style: italic; }
 }
 
 @media (min-width: 881px) { .drawer { display: none; } }
+
+/* ============================================================
+   Wedding Smile Package
+   ============================================================ */
+.promo-band {
+  border-block: 1px solid var(--line-soft);
+  background: linear-gradient(120deg, var(--rose-soft), var(--bg-alt));
+  padding-block: clamp(2.4rem, 1.9rem + 2.5vw, 3.6rem);
+}
+.promo-band__inner {
+  display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between;
+  gap: 1.6rem 2.5rem;
+}
+.promo-band__copy { max-width: 56ch; }
+.promo-band .kicker { margin-bottom: 0.7rem; }
+.promo-band h2 { font-size: clamp(1.4rem, 1.15rem + 1vw, 1.9rem); font-weight: 400; margin-bottom: 0.5rem; }
+.promo-band p { color: var(--ink-soft); font-size: 0.96rem; }
+
+@media (min-width: 1021px) {
+  .hero--wedding .hero__grid { grid-template-columns: 1.2fr 0.8fr; }
+}
+.tour__player--vertical { width: 100%; aspect-ratio: 9 / 16; max-width: 340px; margin-inline: auto; }
+.tour__player--vertical .tour__play { width: 3.8rem; height: 3.8rem; }
+.tour__player--vertical .tour__play svg { width: 1.25rem; height: 1.25rem; }
+.tour__player--vertical .tour__meta { left: 1.2rem; right: 1.2rem; bottom: 1.1rem; flex-direction: column; align-items: flex-start; gap: 0.15rem; }
+.tour__player--vertical .tour__meta strong { font-size: 1.02rem; }
+
+.wedding-menu { display: grid; grid-template-columns: 1fr 1fr; gap: 0 clamp(2rem, 1.5rem + 2vw, 4rem); }
+
+.package-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: clamp(2rem, 1.5rem + 2vw, 3rem); }
+.package { border-top: 1px solid var(--ink); padding-top: 1.4rem; }
+.package .kicker { margin-bottom: 0.8rem; }
+.package h3 { font-size: 1.5rem; font-weight: 500; margin-bottom: 0.7rem; }
+.package p { color: var(--ink-soft); font-size: 0.94rem; margin-bottom: 1.2rem; }
+.package ul { display: grid; gap: 0.6rem; }
+.package ul li { display: grid; grid-template-columns: 1.2rem 1fr; gap: 0.6rem; font-size: 0.92rem; color: var(--ink-soft); }
+.package ul .dash { color: var(--rose); font-weight: 600; }
+
+@media (max-width: 1020px) {
+  .wedding-menu { grid-template-columns: 1fr; }
+}
+@media (max-width: 620px) {
+  .promo-band__inner { flex-direction: column; align-items: flex-start; }
+}
 
 /* ---------- Reduced motion ---------- */
 @media (prefers-reduced-motion: reduce) {
