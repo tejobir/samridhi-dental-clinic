@@ -7,7 +7,7 @@
 <meta name="description" content="Conservative, painless dental care by Dr. Puja Chadha (BDS, FFO, DMLS) in Sector 21, Kharghar, Navi Mumbai. Check-ups, root canals, braces, implants & more. Book on WhatsApp or call 85911 41204." />
 <meta name="theme-color" content="#f6f4f0" />
 <meta name="robots" content="index, follow" />
-<link rel="icon" href="assets/brand/logo.svg" type="image/svg+xml" />
+<link rel="icon" href="assets/brand/logo.png" type="image/png" />
 <link rel="canonical" href="https://samridhidental.in/" />
 
 <!-- Open Graph -->
@@ -116,7 +116,7 @@
 <header class="header" id="top">
   <div class="wrap header__inner">
     <a href="#top" class="brand" aria-label="Samridhi Dental Super Speciality Clinic — home">
-      <img src="assets/brand/logo.svg" alt="" class="brand__mark" width="38" height="38" />
+      <img src="assets/brand/logo.png" alt="" class="brand__mark" width="54" height="54" />
       <span class="brand__text">
         <span class="brand__name">Samridhi Dental</span>
         <span class="brand__sub">Super Speciality Clinic</span>
@@ -183,7 +183,10 @@
     </div>
 
     <div class="hero__media" data-enter>
-      <img src="assets/img/clinic-operatory-1.jpg" alt="Samridhi Dental's treatment room with a comfortable chair, modern equipment and warm wood interior" width="900" height="1200" id="heroImg" />
+      <picture>
+        <source srcset="assets/img/clinic-operatory-1.webp" type="image/webp" />
+        <img src="assets/img/clinic-operatory-1.jpg" alt="Samridhi Dental's treatment room with a comfortable chair, modern equipment and warm wood interior" width="900" height="1200" id="heroImg" fetchpriority="high" />
+      </picture>
     </div>
   </div>
 </section>
@@ -203,7 +206,10 @@
   <div class="wrap about__grid">
     <div class="about__media" data-reveal>
       <figure class="about__portrait">
-        <img src="assets/img/dr-puja.jpg" alt="Dr. Puja Chadha, founder of Samridhi Dental Super Speciality Clinic, at her Kharghar clinic" width="900" height="1125" />
+        <picture>
+          <source srcset="assets/img/dr-puja.webp" type="image/webp" />
+          <img src="assets/img/dr-puja.jpg" alt="Dr. Puja Chadha, founder of Samridhi Dental Super Speciality Clinic, at her Kharghar clinic" width="900" height="1125" loading="lazy" />
+        </picture>
         <figcaption class="about__namecard">
           <strong>Dr. Puja Chadha</strong>
           <span>BDS · FFO · DMLS — Founder</span>
@@ -212,7 +218,6 @@
     </div>
 
     <div class="about__copy" data-reveal data-reveal="2">
-      <span class="kicker">Meet the dentist</span>
       <h2 class="h-section">A calm, careful hand you can actually trust.</h2>
       <p class="lede">Dr. Puja Chadha founded Samridhi Dental on one belief: she listens first, explains every option in plain language, and only recommends what you truly need.</p>
       <blockquote class="about__quote">"The best dentistry removes as little of your natural tooth as possible."</blockquote>
@@ -230,17 +235,16 @@
 <section class="section tour" id="tour">
   <div class="wrap">
     <div class="section-head" data-reveal>
-      <span class="kicker">Step inside</span>
       <h2 class="h-section">A three-minute walk through Samridhi Dental.</h2>
       <p class="lede">Meet Dr. Chadha, see the treatment rooms, and get a feel for the calm we work to create, before you ever walk through our door.</p>
     </div>
 
     <div class="tour__player" data-reveal>
-      <video id="tourVideo" poster="assets/img/clinic-operatory-4.jpg" preload="metadata" playsinline controls>
+      <video id="tourVideo" poster="assets/img/clinic-operatory-4.webp" preload="metadata" playsinline controls>
         <source src="assets/video/clinic-tour.mp4" type="video/mp4" />
         Your browser does not support embedded video. <a href="assets/video/clinic-tour.mp4">Download the clinic tour</a> instead.
       </video>
-      <button class="tour__overlay" id="tourOverlay" style="--poster-img:url('assets/img/clinic-operatory-4.jpg')" aria-label="Play the clinic tour video, 3 minutes 5 seconds">
+      <button class="tour__overlay" id="tourOverlay" style="--poster-img:url('assets/img/clinic-operatory-4.webp')" aria-label="Play the clinic tour video, 3 minutes 5 seconds">
         <span class="tour__play" aria-hidden="true">
           <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
         </span>
@@ -300,14 +304,14 @@
 
       <div class="menu__preview" data-reveal data-reveal="2" aria-hidden="true">
         <div class="menu__frame">
-          <img id="p-check" class="is-active" src="assets/img/clinic-operatory-2.jpg" alt="" loading="lazy" />
+          <picture><source srcset="assets/img/clinic-operatory-2.webp" type="image/webp" /><img id="p-check" class="is-active" src="assets/img/clinic-operatory-2.jpg" alt="" loading="lazy" /></picture>
           <img id="p-fill" src="assets/img/consult.jpg" alt="" loading="lazy" />
           <img id="p-rct" src="assets/img/xray.jpg" alt="" loading="lazy" />
           <img id="p-crown" src="assets/img/procedure.jpg" alt="" loading="lazy" />
           <img id="p-braces" src="assets/img/aligners.jpg" alt="" loading="lazy" />
           <img id="p-implant" src="assets/img/clinic-operatory-1.jpg" alt="" loading="lazy" />
           <img id="p-white" src="assets/img/smile.jpg" alt="" loading="lazy" />
-          <img id="p-kids" src="assets/img/clinic-reception.jpg" alt="" loading="lazy" />
+          <picture><source srcset="assets/img/clinic-reception.webp" type="image/webp" /><img id="p-kids" src="assets/img/clinic-reception.jpg" alt="" loading="lazy" /></picture>
         </div>
         <p class="menu__caption" id="menuCaption">Every treatment, under one roof.</p>
       </div>
@@ -319,8 +323,7 @@
 <section class="promo-band">
   <div class="wrap promo-band__inner" data-reveal>
     <div class="promo-band__copy">
-      <span class="kicker">Getting married?</span>
-      <h2 class="h-sub">Smile bright, smile white — our complete Wedding Smile Package.</h2>
+      <h2 class="h-sub">Getting married? Smile bright, smile white — our complete Wedding Smile Package.</h2>
       <p>Smile design, whitening, veneers, aligners and more for brides, grooms and family — planned around your wedding date.</p>
     </div>
     <a href="wedding.html" class="btn btn--dark">Explore Wedding Smiles</a>
@@ -335,7 +338,7 @@
     </div>
 
     <div class="feature" data-reveal>
-      <div class="feature__media"><img src="assets/img/clinic-operatory-4.jpg" alt="Chairside screen at Samridhi Dental showing dental imaging so patients can see their own diagnosis" loading="lazy" /></div>
+      <div class="feature__media"><picture><source srcset="assets/img/clinic-operatory-4.webp" type="image/webp" /><img src="assets/img/clinic-operatory-4.jpg" alt="Chairside screen at Samridhi Dental showing dental imaging so patients can see their own diagnosis" loading="lazy" /></picture></div>
       <div>
         <h3>You see what we see.</h3>
         <p>Digital X-rays and intra-oral images go straight onto the screen, so you understand exactly what is happening in your mouth and why a treatment is recommended. No jargon, no guesswork.</p>
@@ -348,7 +351,7 @@
     </div>
 
     <div class="feature" data-reveal>
-      <div class="feature__media"><img src="assets/img/clinic-operatory-3.jpg" alt="A clean, well-equipped treatment room at Samridhi Dental with sealed, sterilised instruments" loading="lazy" /></div>
+      <div class="feature__media"><picture><source srcset="assets/img/clinic-operatory-3.webp" type="image/webp" /><img src="assets/img/clinic-operatory-3.jpg" alt="A clean, well-equipped treatment room at Samridhi Dental with sealed, sterilised instruments" loading="lazy" /></picture></div>
       <div>
         <h3>Sterile, precise, and genuinely gentle.</h3>
         <p>Every instrument is autoclave-sterilised and single-patient sealed. Magnification and modern anaesthesia mean treatments are more accurate and far more comfortable, even for patients who dread the chair.</p>
@@ -384,10 +387,10 @@
       <h2 class="h-sub">A calm, spotless space designed to put you at ease.</h2>
     </div>
     <div class="gallery" data-reveal>
-      <figure class="g-tall g-wide"><img src="assets/img/clinic-operatory-2.jpg" alt="Samridhi Dental's main treatment room with modern chair and warm wood interior" loading="lazy" /></figure>
-      <figure><img src="assets/img/clinic-reception.jpg" alt="Reception area with Dr. Chadha's qualifications displayed on the wall" loading="lazy" /></figure>
-      <figure><img src="assets/img/clinic-operatory-3.jpg" alt="Second operatory with sterilised equipment and staff-only access" loading="lazy" /></figure>
-      <figure class="g-wide"><img src="assets/img/clinic-operatory-4.jpg" alt="Treatment room with chairside screen for patient education" loading="lazy" /></figure>
+      <figure class="g-tall g-wide"><picture><source srcset="assets/img/clinic-operatory-2.webp" type="image/webp" /><img src="assets/img/clinic-operatory-2.jpg" alt="Samridhi Dental's main treatment room with modern chair and warm wood interior" loading="lazy" /></picture></figure>
+      <figure><picture><source srcset="assets/img/clinic-reception.webp" type="image/webp" /><img src="assets/img/clinic-reception.jpg" alt="Reception area with Dr. Chadha's qualifications displayed on the wall" loading="lazy" /></picture></figure>
+      <figure><picture><source srcset="assets/img/clinic-operatory-3.webp" type="image/webp" /><img src="assets/img/clinic-operatory-3.jpg" alt="Second operatory with sterilised equipment and staff-only access" loading="lazy" /></picture></figure>
+      <figure class="g-wide"><picture><source srcset="assets/img/clinic-operatory-4.webp" type="image/webp" /><img src="assets/img/clinic-operatory-4.jpg" alt="Treatment room with chairside screen for patient education" loading="lazy" /></picture></figure>
     </div>
   </div>
 </section>
@@ -421,7 +424,6 @@
 <section class="section" id="visit">
   <div class="wrap">
     <div class="section-head" data-reveal>
-      <span class="kicker">Visit us</span>
       <h2 class="h-section">Walk-in or book ahead, we are right in Sector 21.</h2>
     </div>
 
@@ -499,14 +501,15 @@
     <div class="appt-card" data-reveal>
       <h3>Request an appointment</h3>
       <p>Fill this in and it opens WhatsApp with your details ready to send — Dr. Chadha's team replies to confirm your slot.</p>
+      <p class="appt-form__required-note">Fields marked <span class="req" aria-hidden="true">*</span> are required.</p>
       <form class="appt-form" id="apptForm">
         <div class="appt-form__row">
           <div class="field">
-            <label for="apptName">Name</label>
+            <label for="apptName">Name <span class="req" aria-hidden="true">*</span></label>
             <input type="text" id="apptName" name="name" autocomplete="name" required />
           </div>
           <div class="field">
-            <label for="apptPhone">Phone</label>
+            <label for="apptPhone">Phone <span class="req" aria-hidden="true">*</span></label>
             <input type="tel" id="apptPhone" name="phone" autocomplete="tel" inputmode="tel" required />
           </div>
         </div>
@@ -550,7 +553,7 @@
 <!-- ===================== CTA ===================== -->
 <section class="section cta">
   <div class="wrap" data-reveal>
-    <span class="kicker">Book your visit</span>
+    <span class="cta__lede">Book your visit</span>
     <h2>Your healthiest smile starts with <em>one message.</em></h2>
     <p>Book your check-up with Dr. Puja Chadha today. Gentle, honest, and right here in Kharghar.</p>
     <div class="cta__actions">
@@ -570,7 +573,7 @@
   <div class="wrap footer__grid">
     <div>
       <a href="#top" class="brand">
-        <img src="assets/brand/logo.svg" alt="" class="brand__mark" width="38" height="38" />
+        <img src="assets/brand/logo.png" alt="" class="brand__mark" width="38" height="38" />
         <span class="brand__text">
           <span class="brand__name">Samridhi Dental</span>
           <span class="brand__sub">Super Speciality Clinic</span>
