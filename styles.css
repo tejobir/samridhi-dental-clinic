@@ -75,7 +75,14 @@ body {
 
 img, svg, picture { display: block; max-width: 100%; }
 img { height: auto; }
-picture { width: 100%; height: 100%; }
+/* <picture> must fill containers that set their own aspect-ratio and rely on
+   object-fit on the img. Scoped deliberately: components that size the picture
+   themselves (before/after, case study) must not be caught by this. */
+.hero__media picture,
+.about__portrait picture,
+.feature__media picture,
+.menu__frame picture,
+.gallery figure picture { width: 100%; height: 100%; }
 a { color: inherit; text-decoration: none; }
 button { font: inherit; color: inherit; cursor: pointer; background: none; border: 0; }
 ul { list-style: none; padding: 0; }
@@ -730,6 +737,28 @@ em { font-style: italic; }
 @media (max-width: 620px) {
   .beforeafter { grid-template-columns: 1fr; gap: 1.6rem; }
 }
+
+/* ---------- Multi-angle clinical case study (before | after) ---------- */
+.case-study {
+  max-width: 900px; margin-inline: auto;
+  display: grid; gap: clamp(1.2rem, 0.9rem + 1vw, 1.9rem);
+}
+/* Before / After column headers, shown once above all views */
+.case-study__head {
+  display: grid; grid-template-columns: 1fr 1fr; gap: clamp(0.7rem, 0.4rem + 1.2vw, 1.2rem);
+  justify-items: center;
+}
+.case-view { margin: 0; display: grid; gap: 0.6rem; }
+.case-view__label {
+  font-size: 0.72rem; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase;
+  color: var(--ink-faint); text-align: center;
+}
+.case-view__pair { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(0.7rem, 0.4rem + 1.2vw, 1.2rem); }
+.case-view__pair picture {
+  display: block; border-radius: var(--r-panel); overflow: hidden;
+  background: var(--bg-alt); box-shadow: 0 14px 36px oklch(0.35 0.04 30 / 0.14);
+}
+.case-view__pair img { width: 100%; height: 100%; object-fit: cover; display: block; }
 
 /* ============================================================
    Smile Journey timeline
