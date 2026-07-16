@@ -167,6 +167,11 @@ em { font-style: italic; }
 
 .header__inner { display: flex; align-items: center; justify-content: space-between; gap: 1.5rem; }
 
+/* Brand and CTA hold their size; the nav is the flexible element between them,
+   otherwise all three shrink and their labels wrap onto two lines. */
+.brand, .header__cta { flex: none; }
+.brand__name, .brand__sub, .header__call, .header__cta .btn { white-space: nowrap; }
+
 .brand { display: flex; align-items: center; gap: 0.75rem; }
 .brand__mark { width: 38px; height: 38px; flex: none; object-fit: contain; }
 .header .brand__mark { width: 54px; height: 54px; }
@@ -178,14 +183,49 @@ em { font-style: italic; }
 .brand__sub { font-size: 0.6rem; letter-spacing: 0.3em; text-transform: uppercase; color: var(--ink-faint); font-weight: 500; }
 
 .nav { display: flex; align-items: center; gap: 1.9rem; }
+.nav > a, .nav__trigger { white-space: nowrap; }
 .nav a { position: relative; font-size: 0.92rem; font-weight: 500; color: var(--ink-soft); transition: color .25s; padding-block: 0.3rem; }
-.nav a::after {
+.nav > a::after {
   content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 1px;
   background: var(--rose); transform: scaleX(0); transform-origin: left;
   transition: transform .35s var(--ease);
 }
 .nav a:hover { color: var(--ink); }
-.nav a:hover::after { transform: scaleX(1); }
+.nav > a:hover::after { transform: scaleX(1); }
+
+/* ---------- Treatments dropdown ---------- */
+.nav__group { position: relative; display: flex; align-items: center; }
+.nav__trigger {
+  display: inline-flex; align-items: center; gap: 0.35rem;
+  font-size: 0.92rem; font-weight: 500; color: var(--ink-soft);
+  padding-block: 0.3rem; transition: color .25s;
+}
+.nav__trigger:hover, .nav__group:hover .nav__trigger { color: var(--ink); }
+.nav__trigger svg { width: 0.7rem; height: 0.7rem; transition: transform .3s var(--ease); }
+.nav__group:hover .nav__trigger svg,
+.nav__trigger[aria-expanded="true"] svg { transform: rotate(180deg); }
+
+.nav__menu {
+  position: absolute; top: 100%; left: 50%; translate: -50% 0;
+  min-width: 15rem; margin-top: 0.7rem; padding: 0.5rem;
+  display: grid; gap: 0.1rem; list-style: none;
+  background: var(--surface); border: 1px solid var(--line);
+  border-radius: var(--r-panel); box-shadow: 0 22px 50px oklch(0.35 0.04 30 / 0.16);
+  opacity: 0; visibility: hidden; transform: translateY(-6px);
+  transition: opacity .25s var(--ease), transform .25s var(--ease), visibility .25s;
+}
+/* A hover bridge stops the menu closing as the pointer crosses the gap */
+.nav__group::after { content: ""; position: absolute; top: 100%; left: 0; right: 0; height: 0.9rem; }
+.nav__group:hover .nav__menu,
+.nav__group:focus-within .nav__menu,
+.nav__menu.is-open { opacity: 1; visibility: visible; transform: none; }
+.nav__menu a {
+  display: block; padding: 0.6rem 0.8rem; border-radius: 7px;
+  font-size: 0.9rem; color: var(--ink-soft); white-space: nowrap;
+  transition: background-color .2s, color .2s;
+}
+.nav__menu a:hover { background: var(--rose-soft); color: var(--rose-deep); }
+.nav__menu a[aria-current="page"] { color: var(--rose-deep); font-weight: 600; }
 
 .header__cta { display: flex; align-items: center; gap: 1.1rem; }
 .header__call { font-size: 0.92rem; font-weight: 500; color: var(--ink-soft); transition: color .25s; }
@@ -604,7 +644,15 @@ em { font-style: italic; }
   .feature__media { max-width: 560px; }
 }
 
-@media (max-width: 880px) {
+/* Between the full nav and the drawer the header gets tight: drop the phone
+   number first (the Book button and the sticky mobile bar still cover contact). */
+@media (max-width: 1200px) {
+  .header__call { display: none; }
+}
+
+/* Below this the full nav can't fit alongside the brand and CTA, so switch to
+   the drawer rather than let the header squeeze. */
+@media (max-width: 1020px) {
   /* Keep the header (and its toggle) above the drawer so the close ✕ is visible */
   .header { z-index: var(--z-top); }
   .nav, .header__call, .header__cta .btn { display: none; }
@@ -655,7 +703,7 @@ em { font-style: italic; }
   .tour__meta { flex-direction: column; align-items: flex-start; gap: 0.2rem; }
 }
 
-@media (min-width: 881px) { .drawer { display: none; } }
+@media (min-width: 1021px) { .drawer { display: none; } }
 
 /* ============================================================
    Wedding Smile Package
@@ -946,7 +994,7 @@ em { font-style: italic; }
 }
 .featured-pill:hover { transform: translateY(-2px); box-shadow: 0 16px 38px oklch(0.42 0.16 345 / 0.45); }
 .featured-pill__dot { width: 0.5rem; height: 0.5rem; border-radius: 50%; background: var(--on-dark); animation: pulse 2.4s var(--ease-soft) infinite; }
-@media (max-width: 880px) { .featured-pill { bottom: 5.2rem; } }
+@media (max-width: 1020px) { .featured-pill { bottom: 5.2rem; } }
 
 /* ---------- Reduced motion ---------- */
 @media (prefers-reduced-motion: reduce) {

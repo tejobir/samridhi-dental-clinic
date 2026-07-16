@@ -32,6 +32,39 @@
     });
   }
 
+  /* ---- Treatments dropdown (hover is CSS; this covers touch + keyboard) ---- */
+  (function () {
+    var group = document.querySelector(".nav__group");
+    if (!group) return;
+    var trigger = group.querySelector(".nav__trigger");
+    var menu = group.querySelector(".nav__menu");
+    if (!trigger || !menu) return;
+
+    var setOpen = function (open) {
+      trigger.setAttribute("aria-expanded", String(open));
+      menu.classList.toggle("is-open", open);
+    };
+
+    trigger.addEventListener("click", function (e) {
+      e.stopPropagation();
+      setOpen(trigger.getAttribute("aria-expanded") !== "true");
+    });
+
+    // Close on outside click, Escape, or once a link is chosen
+    document.addEventListener("click", function (e) {
+      if (!group.contains(e.target)) setOpen(false);
+    });
+    document.addEventListener("keydown", function (e) {
+      if (e.key === "Escape" && trigger.getAttribute("aria-expanded") === "true") {
+        setOpen(false);
+        trigger.focus();
+      }
+    });
+    menu.querySelectorAll("a").forEach(function (a) {
+      a.addEventListener("click", function () { setOpen(false); });
+    });
+  })();
+
   /* ---- Reveal on scroll ---- */
   var revealEls = document.querySelectorAll("[data-reveal]");
   if (prefersReduced || !("IntersectionObserver" in window)) {
