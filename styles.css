@@ -368,6 +368,11 @@ em { font-style: italic; }
 }
 .tour__caption { text-align: center; margin-top: 1.3rem; font-size: 0.86rem; color: var(--ink-faint); }
 
+.testi-video__grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: clamp(1.5rem, 1rem + 2vw, 2.5rem); }
+.testi-video__player { max-width: none; margin-inline: 0; box-shadow: 0 20px 45px oklch(0.35 0.04 30 / .12); }
+.testi-video__player .tour__play { width: 3.8rem; height: 3.8rem; }
+.testi-video__player .tour__play svg { width: 1.3rem; height: 1.3rem; }
+
 .hero__tour {
   display: inline-flex; align-items: center; gap: 0.55rem; margin-top: 1.5rem;
   font-size: 0.9rem; font-weight: 500; color: var(--ink-soft); position: relative;
@@ -533,7 +538,8 @@ em { font-style: italic; }
   background: var(--bg); border: 1px solid var(--line); border-radius: var(--r-panel);
   padding: 0.8rem 1rem; width: 100%; transition: border-color .25s var(--ease);
 }
-.appt-form input:focus, .appt-form select:focus, .appt-form textarea:focus { outline: none; border-color: var(--rose); }
+.appt-form input:focus, .appt-form select:focus, .appt-form textarea:focus { border-color: var(--rose); }
+.appt-form input:focus-visible, .appt-form select:focus-visible, .appt-form textarea:focus-visible { outline: 2px solid var(--rose); outline-offset: 2px; }
 .appt-form textarea { resize: vertical; min-height: 5rem; }
 .appt-form__submit { display: flex; align-items: center; gap: 1.1rem; flex-wrap: wrap; margin-top: 0.4rem; }
 .appt-form__note { font-size: 0.82rem; color: var(--ink-faint); }
@@ -595,7 +601,7 @@ em { font-style: italic; }
 .footer__bottom {
   margin-top: 3.5rem; padding-top: 1.6rem; border-top: 1px solid oklch(1 0 0 / .09);
   display: flex; flex-wrap: wrap; gap: 1rem; justify-content: space-between;
-  font-size: 0.82rem; color: oklch(0.58 0.01 70);
+  font-size: 0.82rem; color: oklch(0.64 0.01 70); /* 4.24:1 on dark footer bumped to clear WCAG AA 4.5:1 */
 }
 .footer__social { display: flex; gap: 0.6rem; }
 .footer__social a {
@@ -617,6 +623,13 @@ em { font-style: italic; }
 .js [data-reveal].is-in { opacity: 1; transform: none; }
 .js [data-reveal][data-reveal="2"] { transition-delay: .1s; }
 .js [data-reveal][data-reveal="3"] { transition-delay: .2s; }
+
+/* Reveals depend on scroll-triggered IntersectionObserver callbacks, which
+   never fire for content a user never scrolls to (printing, "Save as PDF",
+   headless screenshot tools) — always show content in that case. */
+@media print {
+  [data-reveal] { opacity: 1 !important; transform: none !important; }
+}
 
 .js [data-reveal] .feature__media img,
 .js [data-reveal] .gallery img { transform: scale(1.08); transition: transform 1.4s var(--ease); }
@@ -918,7 +931,7 @@ em { font-style: italic; }
 @keyframes modal-in { from { opacity: 0; transform: translateY(18px) scale(0.98); } to { opacity: 1; transform: none; } }
 @keyframes modal-fade { from { opacity: 0; } to { opacity: 1; } }
 .modal__close {
-  position: absolute; top: 0.9rem; right: 0.9rem; width: 2.4rem; height: 2.4rem; border-radius: 50%;
+  position: absolute; top: 0.9rem; right: 0.9rem; width: 2.75rem; height: 2.75rem; border-radius: 50%;
   display: grid; place-items: center; color: var(--ink-soft); background: var(--surface); border: 1px solid var(--line);
   transition: color 0.2s, border-color 0.2s, transform 0.2s;
 }

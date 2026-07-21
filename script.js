@@ -273,7 +273,24 @@
     var seen;
     try { seen = localStorage.getItem(SEEN_KEY); } catch (e) { seen = null; }
 
-    var showPill = function () { if (pill) pill.hidden = false; };
+    // The pill is only eligible to show once the hero (and its "watch the
+    // tour" link, which it would otherwise sit on top of on mobile) has
+    // scrolled out of view.
+    var eligible = false;
+    var heroVisible = true;
+    var syncPill = function () { if (pill) pill.hidden = !(eligible && !heroVisible); };
+    var showPill = function () { eligible = true; syncPill(); };
+
+    var hero = document.getElementById("hero");
+    if (hero && pill && "IntersectionObserver" in window) {
+      var heroIO = new IntersectionObserver(function (entries) {
+        heroVisible = entries[0].isIntersecting;
+        syncPill();
+      });
+      heroIO.observe(hero);
+    } else {
+      heroVisible = false;
+    }
 
     popup.addEventListener("close", function () {
       try { localStorage.setItem(SEEN_KEY, "1"); } catch (e) {}
